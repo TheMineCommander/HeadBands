@@ -1,0 +1,50 @@
+#SingleInstance, force
+;Online HeadBands by TheMineCommander
+;To support me, please visit my github page at https://www.github.com/theminecommander
+
+;GUI Setup
+Gui, Color, Black
+Gui, Font, cWhite
+Gui, Add, Button, gHostGuess, I'm guessing
+Gui, Add, Button, gGuestGuess, Someone else is guessing
+Gui, Show, h75 w500, HeadBands - Menu
+Return
+
+;Functions
+GuiClose:
+ExitApp
+Return
+
+HostGuess:
+Gui, Destroy
+Gui, Color, Black
+Gui, Font, cWhite
+Gui, Add, Button, x10 y10 h55 w480 gFinishedGuess, I'm finished guessing
+Gui, Show, h75 w500, HeadBands - I'm guessing
+Return
+
+FinishedGuess:
+Gui, Destroy
+Gui, Color, Black
+Gui, Font, cWhite
+Gui, Add, Button, gHostGuess, I'm guessing
+Gui, Add, Button, gGuestGuess, Someone else is guessing
+Gui, Show, h75 w500, HeadBands - Menu
+Return
+
+GuestGuess:
+Gui, Destroy
+Gui, Color, Black
+Gui, Font, cWhite
+Gui, Add, Text,, The animal that your partner should guess is:
+Gui, Font, s15 cYellow
+Gui, Add, Text,, % Random_Choice("Donkey", "Llama", "Human", "Whale", "Fish", "Duck", "Anteater", "Worm", "Butterfly", "Dog", "Cat", "Bird", "Chipmunk", "Elephant", "Tiger", "Squirrel", "Bear", "Octopus", "Bat", "Zebra", "Okapi", "Gorilla", "Woodpecker")
+
+Random_Choice(Choices*){
+	Random,Index,1,% Choices.MaxIndex()
+	Return,Choices[Index]
+}
+Gui, Font, s8
+Gui, Add, Button, gFinishedGuess, The other person has finished guessing
+Gui, Show, h100 w500, HeadBands - Someone else is guessing
+Return
